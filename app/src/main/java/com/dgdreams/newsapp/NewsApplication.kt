@@ -2,7 +2,6 @@ package com.dgdreams.newsapp
 
 import android.app.Application
 import androidx.work.*
-import com.dgdreams.newsapp.data.workmanager.LoadNewsBackGround
 import com.dgdreams.newsapp.di.component.ApplicationComponent
 import com.dgdreams.newsapp.di.component.DaggerApplicationComponent
 import com.dgdreams.newsapp.di.module.ApplicationModule
