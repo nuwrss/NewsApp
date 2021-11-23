@@ -19,6 +19,7 @@ RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: NewsAdapter.ViewHolder, position: Int) {
         holder.titleTextView.text = dataSet[position].title
+        holder.sourceTextView.text = dataSet[position].publish_Date
     }
 
     override fun getItemCount(): Int {
@@ -26,6 +27,7 @@ RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
     }
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val titleTextView: TextView = view.findViewById(R.id.title)
+        val sourceTextView: TextView = view.findViewById(R.id.source)
 
     }
 }

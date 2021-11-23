@@ -11,4 +11,13 @@
     android:layout_height="wrap_content">
 
 </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/source"
+        android:layout_below="@+id/title"
+        android:textColor="@color/black"
+        android:layout_height="wrap_content">
+
+    </TextView>
 </RelativeLayout>

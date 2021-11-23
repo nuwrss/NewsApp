@@ -1,13 +1,16 @@
 package com.dgdreams.newsapp.di.module
 
 import androidx.lifecycle.ViewModelProviders
+import androidx.work.WorkerFactory
 import com.dgdreams.newsapp.data.api.ApiService
 import com.dgdreams.newsapp.data.repo.NewsRepository
 import com.dgdreams.newsapp.ui.MainActivity
 import com.dgdreams.newsapp.ui.MainViewModel
 import com.dgdreams.newsapp.utilis.ViewModelProviderFactory
+import com.dgdreams.newsapp.workmanager.DaggerWorkerFactory
 import dagger.Module
 import dagger.Provides
+import javax.inject.Singleton
 
 /**
  * Kotlin Generics Reference: https://kotlinlang.org/docs/reference/generics.html
