@@ -10,14 +10,17 @@ import javax.inject.Inject
 
 
 class MainViewModel @Inject constructor(private val newsRepository: NewsRepository) :ViewModel() {
-
+    val countryName: MutableLiveData<String> = MutableLiveData()
     init {
         onCountryNameChanged("il")
         fetchNews()
     }
 
-    val countryName: MutableLiveData<String> = MutableLiveData()
-    fun onCountryNameChanged(name: String) = countryName.postValue(name)
+
+    fun onCountryNameChanged(name: String) {
+
+        countryName.value = name
+    }
 
 
       fun fetchNews( ){
