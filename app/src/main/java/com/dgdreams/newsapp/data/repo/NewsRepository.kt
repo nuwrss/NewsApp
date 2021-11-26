@@ -8,25 +8,37 @@ import com.dgdreams.newsapp.data.local.db.DatabaseService
 import com.dgdreams.newsapp.data.model.News
 import javax.inject.Inject
 
-class NewsRepository @Inject constructor(private val apiService: ApiService,private val databaseService: DatabaseService) {
+
+
+
+
+class NewsRepository @Inject constructor( private val apiService: ApiService, private val databaseService: DatabaseService) {
+
 
      var data = MutableLiveData<List<News>>()
-     suspend fun fetchTopHeadLines(){
+     suspend fun fetchTopHeadLines(country: String?) {
 
          try {
-             val response =  apiService.getNews()
-              if (response.status_code == 200){
-                 databaseService.newsDao().deleteAll()
+
+             val response =  apiService.getNews(country)
+              if (response.status_code.equals("success")){
+
+
                  for (news in response.news){
 
+                     if (country != null) {
+                         news.country=country
+                     }
                      insert(news)
+
                  }
 
              }
          }catch (e:Exception){
              Log.e("NewsRepo",e.toString())
          }finally {
-             data.postValue( databaseService.newsDao().getAll())
+             data.postValue( databaseService.newsDao().getByCountry(country!!))
+
          }
 
 

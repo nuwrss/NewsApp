@@ -59,8 +59,8 @@ class NewsApplication : Application() {
             .setRequiredNetworkType(NetworkType.CONNECTED)
             .build()
         val downloadWork = PeriodicWorkRequest.Builder(
-            DownloadByWorkManager::class.java, 1,
-            TimeUnit.HOURS
+            DownloadByWorkManager::class.java, 15,
+            TimeUnit.MINUTES
         ).setConstraints(constraints).build()
 
 

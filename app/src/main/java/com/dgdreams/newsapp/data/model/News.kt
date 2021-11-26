@@ -11,14 +11,14 @@ import org.jetbrains.annotations.NotNull
 @Entity(tableName = "news")
 
 data class News (
-    @PrimaryKey(autoGenerate = true)
-    @NotNull
-    val id: Long,
+
+
     @ColumnInfo(name = "published_date")
     @NotNull
     @Expose
-    @SerializedName("published_date")
+    @SerializedName("pubDate")
     val publish_Date: String,
+    @PrimaryKey
     @ColumnInfo(name = "title")
     @NotNull
     @Expose
@@ -29,6 +29,8 @@ data class News (
     @Expose
     @SerializedName("link")
     val link: String,
+    @ColumnInfo(name = "country")
+    var country :String
 )
 
 

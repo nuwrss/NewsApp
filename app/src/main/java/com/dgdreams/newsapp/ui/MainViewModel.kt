@@ -1,6 +1,5 @@
 package com.dgdreams.newsapp.ui
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,16 +11,19 @@ import javax.inject.Inject
 
 class MainViewModel @Inject constructor(private val newsRepository: NewsRepository) :ViewModel() {
 
-
     init {
+        onCountryNameChanged("il")
         fetchNews()
     }
 
-    private fun fetchNews(){
+    val countryName: MutableLiveData<String> = MutableLiveData()
+    fun onCountryNameChanged(name: String) = countryName.postValue(name)
+
+
+      fun fetchNews( ){
         viewModelScope.launch {
 
-
-           newsRepository.fetchTopHeadLines()
+           newsRepository.fetchTopHeadLines(countryName.value)
 
         }
     }

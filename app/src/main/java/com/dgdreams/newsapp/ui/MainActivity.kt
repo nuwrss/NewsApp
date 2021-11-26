@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,22 +29,27 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         injectDependencies(buildActivityComponent())
         super.onCreate(savedInstanceState)
-        val news : MutableList<News> = arrayListOf()
+
         setContentView(R.layout.activity_main)
-        var rv = findViewById<RecyclerView>(R.id.rv)
-        var linearLayoutManager: LinearLayoutManager = LinearLayoutManager(this)
-        rv.layoutManager = linearLayoutManager
-        var adapter = NewsAdapter(news)
-        rv.adapter = adapter
+        showCountriesFragment()
+        showNewsFragment()
 
-        viewModel.getNews().observe(this, Observer {
-
-            news.clear()
-            news.addAll(it)
-            adapter.notifyDataSetChanged()
-
-        })
     }
+
+    private fun showNewsFragment() {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.containerFragment, NewsFragment.newInstance())
+            .commitAllowingStateLoss()
+
+
+    }
+
+    private fun showCountriesFragment(){
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.sidFrame, CountriesFragment.newInstance())
+            .commitAllowingStateLoss()
+    }
+
     private fun buildActivityComponent() =
         DaggerActivityComponent
             .builder()

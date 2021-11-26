@@ -21,7 +21,7 @@ class ApplicationModule(private val application: NewsApplication) {
     @Provides
     @Singleton
     fun getApiService(): ApiService =
-        RetrofitBuilder.getRetrofit("https://google-news1.p.rapidapi.com"
+        RetrofitBuilder.getRetrofit("https://newsdata.io/api/1/"
         )
 
     @Provides

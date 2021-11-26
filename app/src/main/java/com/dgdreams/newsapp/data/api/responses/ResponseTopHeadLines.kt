@@ -6,9 +6,9 @@ import com.google.gson.annotations.SerializedName
 
 data class ResponseTopHeadLines(
 
-    @SerializedName("statusCode")
-val   status_code : Int,
+    @SerializedName("status")
+val   status_code : String,
     @Expose
-@SerializedName("articles")
+@SerializedName("results")
 val news: List<News>
 )
