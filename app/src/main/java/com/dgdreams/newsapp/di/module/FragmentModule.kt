@@ -12,8 +12,7 @@ import dagger.Provides
 @Module
 class FragmentModule(private val fragment: BaseFragment) {
 
-    @Provides
-    fun provideLinearLayoutManager(): LinearLayoutManager = LinearLayoutManager(fragment.context)
+  
 
 
     @Provides
