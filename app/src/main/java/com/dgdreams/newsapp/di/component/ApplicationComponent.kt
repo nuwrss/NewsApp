@@ -15,6 +15,5 @@ interface ApplicationComponent {
     fun inject(app: NewsApplication)
     fun getApiService(): ApiService
     fun getDatabaseService(): DatabaseService
-    fun getNewsRepository():NewsRepository
     fun getSharedPrefs():SharedPrefs
 }

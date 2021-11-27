@@ -40,10 +40,7 @@ class ApplicationModule(private val application: NewsApplication) {
         return SharedPrefs(provideApplication())
     }
 
-    @Provides
-    @Singleton
-    fun provideNewsRepository(): NewsRepository =
-        NewsRepository(getApiService(),provideDatabaseService(),provideSharedPRefs())
+
 
     @Provides
     @Singleton

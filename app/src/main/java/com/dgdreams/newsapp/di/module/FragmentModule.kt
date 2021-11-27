@@ -12,7 +12,7 @@ import dagger.Provides
 @Module
 class FragmentModule(private val fragment: BaseFragment) {
 
-  
+
 
 
     @Provides
