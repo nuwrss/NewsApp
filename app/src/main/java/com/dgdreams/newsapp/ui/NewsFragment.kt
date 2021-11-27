@@ -11,11 +11,14 @@ import com.dgdreams.newsapp.adapters.NewsAdapter
 import com.dgdreams.newsapp.data.model.News
 import com.dgdreams.newsapp.di.component.FragmentComponent
 import com.dgdreams.newsapp.ui.base.BaseFragment
+import com.dgdreams.newsapp.utilis.SharedPrefs
 import javax.inject.Inject
 
 class NewsFragment: BaseFragment()  {
     @Inject
     lateinit var viewModel: MainViewModel
+    @Inject
+    lateinit var sharedPrefs: SharedPrefs
     companion object {
 
         const val TAG = "NewsFragment"
@@ -53,6 +56,7 @@ class NewsFragment: BaseFragment()  {
             news.addAll(it)
             adapter.notifyDataSetChanged()
             progressBar.visibility=View.GONE
+            sharedPrefs.getUpdatedTime()
         })
 
         viewModel.countryName.observe(this, Observer {

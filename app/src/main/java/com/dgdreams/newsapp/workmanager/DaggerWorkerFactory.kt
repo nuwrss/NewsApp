@@ -6,9 +6,10 @@ import androidx.work.ListenableWorker
 import androidx.work.WorkerFactory
 import androidx.work.WorkerParameters
 import com.dgdreams.newsapp.data.repo.NewsRepository
+import com.dgdreams.newsapp.utilis.SharedPrefs
 import javax.inject.Inject
 
-class DaggerWorkerFactory (private val newsRepository: NewsRepository) : WorkerFactory() {
+class DaggerWorkerFactory (private val newsRepository: NewsRepository ) : WorkerFactory() {
 
     override fun createWorker(appContext: Context, workerClassName: String, workerParameters: WorkerParameters): ListenableWorker? {
 

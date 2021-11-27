@@ -4,10 +4,15 @@ import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.dgdreams.newsapp.data.repo.NewsRepository
+import android.R
+
+
+
+
 
 
 class DownloadByWorkManager (
-      context: Context,
+      val context: Context,
     params: WorkerParameters
 
     ) : CoroutineWorker(context, params) {
@@ -16,6 +21,7 @@ class DownloadByWorkManager (
         override suspend fun doWork(): Result {
 
                 newsRepository.fetchTopHeadLines("il")
+
 
             return Result.success()
         }

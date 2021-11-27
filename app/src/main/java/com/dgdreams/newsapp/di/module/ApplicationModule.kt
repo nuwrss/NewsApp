@@ -8,6 +8,7 @@ import com.dgdreams.newsapp.data.api.ApiService
 import com.dgdreams.newsapp.data.api.RetrofitBuilder
 import com.dgdreams.newsapp.data.local.db.DatabaseService
 import com.dgdreams.newsapp.data.repo.NewsRepository
+import com.dgdreams.newsapp.utilis.SharedPrefs
 import com.dgdreams.newsapp.workmanager.DaggerWorkerFactory
 import dagger.Module
 import dagger.Provides
@@ -32,16 +33,22 @@ class ApplicationModule(private val application: NewsApplication) {
             "news-db"
         ).build()
 
+    @Provides
+    @Singleton
+    fun provideSharedPRefs():
+            SharedPrefs{
+        return SharedPrefs(provideApplication())
+    }
 
     @Provides
     @Singleton
     fun provideNewsRepository(): NewsRepository =
-        NewsRepository(getApiService(),provideDatabaseService())
+        NewsRepository(getApiService(),provideDatabaseService(),provideSharedPRefs())
 
     @Provides
     @Singleton
-    fun workerFactory(newsRepository: NewsRepository): WorkerFactory {
-        return DaggerWorkerFactory(newsRepository)
+    fun workerFactory(newsRepository: NewsRepository ): WorkerFactory {
+        return DaggerWorkerFactory(newsRepository )
     }
 
 

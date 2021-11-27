@@ -1,6 +1,5 @@
 package com.dgdreams.newsapp.data.api
 
-import retrofit2.http.Header
 
 object Headers {
 

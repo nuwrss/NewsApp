@@ -6,13 +6,15 @@ import androidx.lifecycle.MutableLiveData
 import com.dgdreams.newsapp.data.api.ApiService
 import com.dgdreams.newsapp.data.local.db.DatabaseService
 import com.dgdreams.newsapp.data.model.News
+import com.dgdreams.newsapp.utilis.SharedPrefs
 import javax.inject.Inject
 
 
 
 
 
-class NewsRepository @Inject constructor( private val apiService: ApiService, private val databaseService: DatabaseService) {
+class NewsRepository @Inject constructor( private val apiService: ApiService, private val databaseService: DatabaseService,
+private val sharedPrefs: SharedPrefs) {
 
 
      var data = MutableLiveData<List<News>>()
@@ -32,24 +34,19 @@ class NewsRepository @Inject constructor( private val apiService: ApiService, pr
                      insert(news)
 
                  }
+                  sharedPrefs.saveUpdatedDat()
 
              }
          }catch (e:Exception){
              Log.e("NewsRepo",e.toString())
          }finally {
-             data.postValue( databaseService.newsDao().getByCountry(country!!))
+             data.postValue( databaseService.newsDao().getByCountryDesc(country!!))
 
          }
 
 
 
     }
-
-
-
-
-
-
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread

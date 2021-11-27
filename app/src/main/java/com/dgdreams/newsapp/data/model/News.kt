@@ -1,8 +1,6 @@
 package com.dgdreams.newsapp.data.model
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import org.jetbrains.annotations.NotNull
@@ -11,6 +9,7 @@ import org.jetbrains.annotations.NotNull
 @Entity(tableName = "news")
 
 data class News (
+
 
 
     @ColumnInfo(name = "published_date")

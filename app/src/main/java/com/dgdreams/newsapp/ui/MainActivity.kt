@@ -19,6 +19,7 @@ import com.dgdreams.newsapp.data.model.News
 import com.dgdreams.newsapp.di.component.ActivityComponent
 import com.dgdreams.newsapp.di.component.DaggerActivityComponent
 import com.dgdreams.newsapp.di.module.ActivityModule
+import com.dgdreams.newsapp.utilis.SharedPrefs
 import com.dgdreams.newsapp.workmanager.DownloadByWorkManager
 import javax.inject.Inject
 
@@ -26,6 +27,7 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModel: MainViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         injectDependencies(buildActivityComponent())
         super.onCreate(savedInstanceState)
@@ -33,6 +35,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         showCountriesFragment()
         showNewsFragment()
+
+
+
 
     }
 
