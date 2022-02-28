@@ -51,7 +51,7 @@ class NewsFragment: BaseFragment()  {
     lateinit var adapter: NewsAdapter
     var news : MutableList<News> = arrayListOf()
     override fun setupObservers() {
-        viewModel.getNews().observe(this, Observer {
+        viewModel.news.observe(this, Observer {
             news.clear()
             news.addAll(it)
             adapter.notifyDataSetChanged()

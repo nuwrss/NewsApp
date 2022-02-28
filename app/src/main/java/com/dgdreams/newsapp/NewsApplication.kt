@@ -3,15 +3,12 @@ package com.dgdreams.newsapp
 import android.app.Application
 import androidx.work.*
 import com.dgdreams.newsapp.di.component.ApplicationComponent
-import com.dgdreams.newsapp.di.component.DaggerApplicationComponent
 import com.dgdreams.newsapp.di.module.ApplicationModule
 import com.dgdreams.newsapp.workmanager.DownloadByWorkManager
 import javax.inject.Inject
-
 import java.util.concurrent.TimeUnit
 import com.google.common.util.concurrent.ListenableFuture
 import java.util.concurrent.ExecutionException
-
 
 class NewsApplication : Application() {
     lateinit var applicationComponent: ApplicationComponent
@@ -21,15 +18,9 @@ class NewsApplication : Application() {
         super.onCreate()
         injectDependencies()
         configureWorkManager();
-
-
         if (!isWorkScheduled(workManagerTag)){
             scheduleWork(workManagerTag);
         }
-
-
-
-
     }
     private fun isWorkScheduled(tag: String): Boolean {
         val instance = WorkManager.getInstance(this)
@@ -62,13 +53,7 @@ class NewsApplication : Application() {
             DownloadByWorkManager::class.java, 15,
             TimeUnit.MINUTES
         ).setConstraints(constraints).build()
-
-
-
         WorkManager.getInstance(this).enqueueUniquePeriodicWork(tag!!, ExistingPeriodicWorkPolicy.KEEP , downloadWork);
-
-
-
 
     }
 

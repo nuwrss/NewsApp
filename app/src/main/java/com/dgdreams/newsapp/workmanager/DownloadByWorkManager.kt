@@ -12,7 +12,7 @@ import android.R
 
 
 class DownloadByWorkManager (
-      val context: Context,
+      context: Context,
     params: WorkerParameters
 
     ) : CoroutineWorker(context, params) {
